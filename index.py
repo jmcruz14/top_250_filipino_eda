@@ -14,19 +14,21 @@ import requests
 import time
 
 letterboxd_main_url = 'https://letterboxd.com'
-letterboxd_list_url = 'https://letterboxd.com/scrimer/list/top-250-narrative-feature-length-filipino/'
+letterboxd_list_url = 'https://letterboxd.com/tuesjays/list/top-250-narrative-feature-length-filipino/'
 
 PATH = r'/Users/jccruz/Desktop/letterboxd_list_scraper/geckodriver'
 
-options=Options()
+options = Options()
 options.add_argument("-headless")
 browser = webdriver.Firefox(executable_path = PATH, keep_alive = False, options=options)
 browser.implicitly_wait(40)
 browser.get(letterboxd_list_url)
 
-#Scroll to center of page
+# Scroll to center of page
 browser.execute_script("window.scrollTo(0,document.body.scrollHeight)")
 title = browser.title
+
+# Extract Page Source
 soup_1 = BeautifulSoup(browser.page_source, 'lxml')
 
 # data-target-link="/film/barbers-tales/" - href link
@@ -34,9 +36,12 @@ soup_1 = BeautifulSoup(browser.page_source, 'lxml')
 movie_titles_soup = []
 movie_titles_selenium = []
 
-movie_div_xpath = "//div[contains(@class, 'poster film-poster')]"
+# XPath to locate for div element to extract
+# movie_div_xpath = "//div[contains(@class, 'poster film-poster')]"
 
 #movie_list = soup_1.find_all('div', attrs={'data-image-width':'125'})
+
+# Obtain Individual 
 movie_list = soup_1.select('ul li div', limit=100)
 print('movie list length', len(movie_list))
 #print(movie_list)
@@ -63,15 +68,16 @@ for div_info in movie_list:
 #             movie_titles_soup.append(div_info.find('img').get('alt'))
 #         browser.back()
 #         continue
-        
+
+# Currently, the code produces 75 movies maximum
+#         
 movie_titles_soup = list(dict.fromkeys(movie_titles_soup)) # Remove duplicates
 
-print(movie_titles_soup)
-print('length', len(movie_titles_soup))
+# WebDriverWait(browser, 20)
 
-WebDriverWait(browser, 20)
 a_links = []
 
+# Append succeeding links to another page
 links_page = soup_1.find_all('li', attrs={'class':'paginate-page'})
 for link in links_page:
     x = link.find('a')
