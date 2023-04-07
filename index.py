@@ -88,7 +88,6 @@ for link in links_page:
         a_links.append("None")
 
 a_links.remove("None")
-WebDriverWait(browser, 20)
 
 for href in a_links:
     href_addtl = letterboxd_main_url + href
