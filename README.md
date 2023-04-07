@@ -9,6 +9,6 @@ You can access the notebook [here](https://github.com/jmcruz14/letterboxd_list_s
 Jay Cruz
 
 ### Acknowledgments
-L-Dot\n
-Sam Learner\n
+L-Dot<br>
+Sam Learner<br>
 Nicolas (npogeant)
