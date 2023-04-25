@@ -1,11 +1,7 @@
 geckodriver
 geckodriver.log
 page_file.txt
-Letterboxd-list-scraper-master/cast_reader.py
-Letterboxd-list-scraper-master/csv_writer.py
-Letterboxd-list-scraper-master/imdb-top-250.csv
-Letterboxd-list-scraper-master/list_scraper_gui.py
-Letterboxd-list-scraper-master/README.md
+Letterboxd-list-scraper-master/
 .DS_Store
 fdcp-channel-2023.csv
 index.py
